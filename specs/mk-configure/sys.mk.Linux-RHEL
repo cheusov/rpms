@@ -1,0 +1,2 @@
+LEXLIB  ?= -lfl
+INSTALL ?= /usr/bin/install

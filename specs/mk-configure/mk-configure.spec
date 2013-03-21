@@ -3,7 +3,7 @@
 # Upstream: Aleksey Cheusov <vle$gmx,net>
 
 Name: mk-configure
-Version: 0.23.0
+Version: 0.24.0
 Release: 1%{?dist}
 
 Summary: Lightweight replacement for GNU autotools
@@ -12,12 +12,14 @@ Group: Development/Tools
 
 Url: http://sourceforge.net/projects/mk-configure/
 Source: http://prdownloads.sf.net/%{name}/%{name}-%{version}.tar.gz
+Source1: sys.mk.Linux-RHEL
 Packager: Aleksey Cheusov <vle@gmx.net>
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildArch: noarch
 
-Requires: bmake
+# coreutils is needed for install(1)
+Requires: bmake coreutils
 BuildRequires: bmake
 
 # for check
@@ -39,6 +41,7 @@ export MANDIR=%{_mandir}
 # examples are built and tested either,
 # let's keep a pristine copy
 %{__cp} -al examples doc
+%{__cp} %{SOURCE1} sys.mk
 
 %build
 %env
@@ -51,13 +54,13 @@ bmake install DESTDIR=%{buildroot}
 
 %check
 unset MAKEFLAGS
-env LEXLIB=-lfl NOSUBDIR='hello_lua hello_lua2 hello_lua3 hello_reqd' bmake test
+env NOSUBDIR='hello_lua hello_lua2 hello_lua3 hello_reqd' bmake test
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
-%doc ChangeLog NEWS README TODO doc/presentation.pdf
+%doc NEWS README TODO doc/presentation.pdf
 %doc doc/examples/
 %{_bindir}/*
 %{_datadir}/mk-configure/
@@ -66,6 +69,9 @@ env LEXLIB=-lfl NOSUBDIR='hello_lua hello_lua2 hello_lua3 hello_reqd' bmake test
 %{_mandir}/man7/*
 
 %changelog
+* Fri Mar 22 2013 Aleksey Cheusov <vle@gmx.net> 0.24.0-1
+- update to 0.24.0
+
 * Sat Jul 22 2012 Aleksey Cheusov <vle@gmx.net> 0.23.0-1
 - update to 0.23.0
 
