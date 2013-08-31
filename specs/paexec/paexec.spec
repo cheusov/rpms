@@ -1,8 +1,8 @@
 Name: paexec
-Version: 0.18.0
+Version: 0.19.1
 Release: 1%{?dist}
 
-Summary: Distribute performing the given tasks across several CPUs or machines in a network
+Summary: paexec distributes tasks over network or CPUs
 License: MIT
 Group: Networking/Other
 
@@ -10,7 +10,7 @@ Url: http://paexec.sourceforge.net/
 Source: http://prdownloads.sf.net/%{name}/%{name}-%{version}.tar.gz
 Packager: Aleksey Cheusov <vle@gmx.net>
 
-BuildRequires: mk-configure libmaa-devel
+BuildRequires: mk-configure runawk
 Requires: runawk
 
 %description
@@ -18,7 +18,7 @@ Small program that processes a list of tasks in parallel
 on different CPUs, computers in a network or whatever else.
 
 %package examples
-Summary: Examples for PAEXEC
+Summary: Examples for paexec
 Group: Documentation
 BuildArch: noarch
 Requires: %{name} = %{version}-%{release}
@@ -53,7 +53,7 @@ export DESTDIR=%{buildroot}
 mkcmake install
 
 %files
-%doc doc/*
+%doc doc/NEWS doc/README doc/COPYRIGHT doc/TODO presentation/paexec.pdf
 %{_bindir}/*
 %{_mandir}/man1/*
 
@@ -64,6 +64,9 @@ mkcmake install
 # - investigate and re-enable tests
 
 %changelog
+* Sat Aug 31 2013 Aleksey Cheusov <vle@gmx.net> 0.19.1-1
+- Updated to release 0.19.1.
+
 * Wed Mar 20 2013 Dag Wieers <dag@wieers.com> - 0.18.0-1
 - Updated to release 0.18.0.
 
