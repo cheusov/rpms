@@ -4,7 +4,7 @@
 
 Summary: DICT protocol (RFC 2229) server and command-line client
 Name: dict
-Version: 1.12.0
+Version: 1.12.1
 Release: 1%{?dist}
 License: GPL+ and zlib and MIT
 Group: Applications/Internet
@@ -109,6 +109,9 @@ fi
 %{_sbindir}/dictd
 
 %changelog
+* Mon Sep 30 2013 Aleksey Cheusov <vle@gmx.net> - 1.12.1-1
+- Update to 1.12.1
+
 * Sun Jan 29 2012 Aleksey Cheusov <vle@gmx.net> - 1.12.0-1
 - Reworked for repoforge
 - New dict.conf, dictd.conf and /etc/sysconfig/dictd
